@@ -51,7 +51,6 @@ public class Emprunt {
         if(dateEmprunt != null){
             this.dateEmprunt = dateEmprunt;
             this.dateRetourPrevue = dateEmprunt.ajouterJours(nbJoursPret);
-            this.estRendu = true;
         }
         this.dateRetourEffective = null;
     }
@@ -157,7 +156,7 @@ public class Emprunt {
         }
 
         String retard = "";
-        if (estRendu && dateRetourEffective.estApres(dateRetourPrevue)) {
+        if (estRendu && dateRetourEffective != null && dateRetourEffective.estApres(dateRetourPrevue)) {
             int jours = dateRetourEffective.differenceEnJours(dateRetourPrevue);
             retard = " (retard de " + jours + " jour(s))";
         }
