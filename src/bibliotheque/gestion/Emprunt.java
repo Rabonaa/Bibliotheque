@@ -62,6 +62,7 @@ public class Emprunt {
     public boolean estEnRetard(Date dateActuelle) {
 
         // à compléter
+        return false;
     }
 
     /**
@@ -72,6 +73,7 @@ public class Emprunt {
      */
     public int calculerJoursRetard(Date dateActuelle) {
         // à compléter
+        return 0;
     }
     /**
      * Clôture l'emprunt avec la date de retour effective.
