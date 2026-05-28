@@ -51,6 +51,7 @@ public class Emprunt {
         if(dateEmprunt != null){
             this.dateEmprunt = dateEmprunt;
             this.dateRetourPrevue = dateEmprunt.ajouterJours(nbJoursPret);
+            livre.setDisponible(false);
         }
         this.dateRetourEffective = null;
     }
