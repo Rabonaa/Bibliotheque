@@ -77,6 +77,7 @@ public class Etudiant {
     public void setAdresse(String adresse) {
         if (!adresse.isEmpty())
             this.adresse = adresse;
+        this.adresse = "Non renseignee";
         return;
     }
 
@@ -106,7 +107,7 @@ public class Etudiant {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         Etudiant autre = (Etudiant) obj;
-        if (this.numeroEtudiant == autre.numeroEtudiant) return true;
+        return this.numeroEtudiant == autre.numeroEtudiant;
     }
 }
 

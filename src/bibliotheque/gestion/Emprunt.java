@@ -45,10 +45,15 @@ public class Emprunt {
      * @param nbJoursPret le nombre de jours de prêt
      */
     public Emprunt(Livre livre, Etudiant emprunteur, Date dateEmprunt, int nbJoursPret) {
+        this.estRendu = false;
         this.livre = livre;
         this.emprunteur = emprunteur;
-        this.dateEmprunt = dateEmprunt;
-        // à compléter
+        if(dateEmprunt != null){
+            this.dateEmprunt = dateEmprunt;
+            this.dateRetourPrevue = dateEmprunt.ajouterJours(nbJoursPret);
+            this.estRendu = true;
+        }
+        this.dateRetourEffective = null;
     }
 
 
@@ -60,7 +65,8 @@ public class Emprunt {
      * @return true si l'emprunt est en retard, false sinon
      */
     public boolean estEnRetard(Date dateActuelle) {
-
+        if (dateActuelle.estApres(dateRetourPrevue))
+            return true;
         // à compléter
         return false;
     }
@@ -72,6 +78,8 @@ public class Emprunt {
      * @return le nombre de jours de retard (0 si aucun retard)
      */
     public int calculerJoursRetard(Date dateActuelle) {
+        if (estEnRetard(dateActuelle))
+            return dateActuelle.differenceEnJours(dateRetourPrevue);
         // à compléter
         return 0;
     }
@@ -84,28 +92,48 @@ public class Emprunt {
      * @param dateRetour la date de retour effective
      */
     public void cloturerEmprunt(Date dateRetour) {
-        // à compléter
+        dateRetourEffective = dateRetour;
+        estRendu = true;
+        livre.retourner();
+        if(estEnRetard(dateRetour)){
+            calculerJoursRetard(dateRetour);
+            System.out.println("Livre rendu en retard !");
+        }
     }
 
     // -------------------- Getters --------------------
 
     /** @return le livre emprunté */
-
+    public Livre getLivreEmprunte(){
+        return livre;
+    }
 
     /** @return l'étudiant emprunteur */
-
+    public Etudiant getEmprunteur(){
+        return emprunteur;
+    }
 
     /** @return la date d'emprunt */
-
+    public Date getDateEmprunt(){
+        return dateEmprunt;
+    }
 
     /** @return la date de retour prévue */
-
+    public Date getDateRetourPrevue(){
+        return dateRetourPrevue;
+    }
 
     /** @return la date de retour effective, ou null si non rendu */
-
+    public Date getDateRetourEffective(){
+        if (dateRetourEffective != null)
+            return dateRetourEffective;
+        return null;
+    }
 
     /** @return true si l'emprunt a été rendu */
-
+    public boolean getDateRetour(){
+        return estRendu;
+    }
 
     // -------------------- toString --------------------
 

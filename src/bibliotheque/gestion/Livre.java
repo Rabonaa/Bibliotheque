@@ -44,6 +44,10 @@ public class Livre {
         compteurLivres++;
     }
 
+    public void setDisponible(boolean disponible){
+        this.disponible = disponible;
+    }
+
     /** @return le titre du livre */
     public String getTitre() { return titre; }
 
